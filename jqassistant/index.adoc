@@ -1,0 +1,16 @@
+= JUnit 4
+
+This document contains concepts and constraints which are executed by https://jqassistant.org[jQAssistant]
+
+[[default]]
+[role=group,includesGroups="structure,dashboard"]
+== Default Rules
+
+The following groups are executed by default:
+
+- <<structure>>
+- <<dashboard>>
+
+include::structure.adoc[]
+include::dashboard.adoc[]
+
