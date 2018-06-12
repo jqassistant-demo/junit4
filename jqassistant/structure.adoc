@@ -1,5 +1,5 @@
 [[structure]]
-[role=group,includesConcepts="structure:Component"]
+[role=group,includesConcepts="structure:ComponentDependency"]
 == Structure
 
 [[structure:RootPackage]]
@@ -9,7 +9,7 @@
 MATCH
   (artifact:Artifact)-[:CONTAINS]->(root:Package)
 WHERE
-  artifact.type = "jar"
+  artifact.type <> "test-jar"
   and root.fqn="org.junit"
 SET
   root:Root
@@ -27,5 +27,25 @@ SET
   component:Component
 RETURN
   component
+----
+
+[[structure:ComponentDependency]]
+[source,cypher,role=concept,requiresConcepts="structure:Component"]
+.A component depends on (`DEPENDS_ON`) another component if exists at least one dependency of contained Java types.
+----
+MATCH
+  (c1:Component)-[:CONTAINS*]->(t1:Type),
+  (c2:Component)-[:CONTAINS*]->(t2:Type),
+  (t1)-[:DEPENDS_ON]->(t2)
+WHERE
+  c1 <> c2
+WITH
+  c1, c2, count(t2) as weight
+MERGE
+  (c1)-[d:DEPENDS_ON]->(c2)
+SET
+  d.weight = weight
+RETURN
+  c1 as component, c2 as dependency, weight
 ----
 

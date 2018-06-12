@@ -412,6 +412,19 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>pmd</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.9</version>
@@ -501,9 +514,13 @@
 								<scanInclude>
 									<path>${project.basedir}/.git</path>
 								</scanInclude>
-								<!-- jacoco, pmd -->
+								<!-- jacoco -->
 								<scanInclude>
 									<path>${project.build.directory}/site</path>
+								</scanInclude>
+								<!-- pmd -->
+								<scanInclude>
+									<path>${project.build.directory}/pmd.xml</path>
 								</scanInclude>
 							</scanIncludes>
 							<scanProperties>
