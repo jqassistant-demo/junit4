@@ -1,5 +1,5 @@
 [[dashboard]]
-[role=group, includesConcepts="dashboard:Authors, dashboard:Merge, dashboard:Timetree,dashboard:HAS_SOURCE, dashboard:Filetype"]
+[role=group, includesConcepts="dashboard:Authors, dashboard:Merge, dashboard:Timetree,dashboard:TypeHasSourceGitFile, dashboard:Filetype"]
 == Dashboard
 
 These concepts prepares the data for the dashboard.
@@ -64,8 +64,21 @@ MERGE
 RETURN
   y, m, d
 ----
-[[dashboard:HAS_SOURCE]]
-[source,cypher,role="concept"]
+
+[[dashboard:GitFileName]]
+[source,cypher,role="concept",verify="aggregation"]
+.Copies the relativePath property of `:Git:File` nodes to the indexed property `fileName` for faster lookup.
+----
+MATCH
+  (f:Git:File)
+SET
+  f.fileName = f.relativePath
+RETURN
+  count(f)
+----
+
+[[dashboard:TypeHasSourceGitFile]]
+[source,cypher,role="concept",requiresConcepts="dashboard:GitFileName"]
 .Creates relates HAS_SOURCE between types and git files.
 ----
 MATCH
@@ -75,11 +88,11 @@ WITH
 MATCH
   (f:Git:File)
 WHERE
-  f.relativePath ends with sourceFileName
+  f.fileName ends with sourceFileName
 MERGE
   (t)-[:HAS_SOURCE]->(f)
 RETURN
-  f.relativePath, collect(t.fqn)
+  f.fileName, collect(t.fqn)
 ----
 [[dashboard:Filetype]]
 [source,cypher,role="concept"]
