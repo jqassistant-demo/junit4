@@ -110,8 +110,9 @@
 		<arguments />
 		<gpg.keyname>67893CC4</gpg.keyname>
 		<!-- jQAssistant -->
-		<jqassistant.maven.version>1.4.0</jqassistant.maven.version>
-		<jqassistant.kontext-e.version>1.4.1</jqassistant.kontext-e.version>
+		<jqassistant.maven.version>1.6.0</jqassistant.maven.version>
+		<jqassistant.kontext-e.version>1.6.1</jqassistant.kontext-e.version>
+		<jqassistant.asciidoc-report.version>1.6.0</jqassistant.asciidoc-report.version>
 	</properties>
 
 	<dependencies>
@@ -548,6 +549,12 @@
 						<artifactId>jqassistant.plugin.pmd</artifactId>
 						<version>${jqassistant.kontext-e.version}</version>
 					</dependency>
+					<dependency>
+						<groupId>org.jqassistant.contrib.plugin</groupId>
+						<artifactId>jqassistant-asciidoc-report-plugin</artifactId>
+						<version>${jqassistant.asciidoc-report.version}</version>
+					</dependency>
+
 				</dependencies>
 			</plugin>
 		</plugins>
