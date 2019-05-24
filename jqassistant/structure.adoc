@@ -1,20 +1,21 @@
 [[structure]]
-[role=group,includesConcepts="structure:ComponentDependency"]
+[role=group,includesConcepts="structure:*"]
 == Structure
+
+=== Concepts
 
 [[structure:RootPackage]]
 [source,cypher,role=concept]
 .The main artifact contains the `Root` package of the libary "org.junit".
 ----
 MATCH
-  (artifact:Artifact)-[:CONTAINS]->(root:Package)
+  (artifact:Main:Artifact)-[:CONTAINS]->(root:Package)
 WHERE
-  artifact.type <> "test-jar"
-  and root.fqn="org.junit"
+  root.fqn="org.junit"
 SET
   root:Root
 RETURN
-  root
+  root as RootPackage
 ----
 
 [[structure:Component]]
@@ -26,12 +27,14 @@ MATCH
 SET
   component:Component
 RETURN
-  component
+  component.name as Component
+ORDER BY
+  Component
 ----
 
 [[structure:ComponentDependency]]
 [source,cypher,role=concept,requiresConcepts="structure:Component"]
-.A component depends on (`DEPENDS_ON`) another component if exists at least one dependency of contained Java types.
+.A component depends on another component (`DEPENDS_ON_COMPONENT`) if exists at least one dependency of contained Java types.
 ----
 MATCH
   (c1:Component)-[:CONTAINS*]->(t1:Type),
@@ -42,10 +45,25 @@ WHERE
 WITH
   c1, c2, count(t2) as weight
 MERGE
-  (c1)-[d:DEPENDS_ON]->(c2)
+  (c1)-[d:DEPENDS_ON_COMPONENT]->(c2)
 SET
   d.weight = weight
 RETURN
-  c1 as component, c2 as dependency, weight
+  c1 as Component, c2 as Dependency, weight as Weight
+ORDER BY
+  Component, Weight desc
 ----
 
+=== Reports
+
+[[structure:ComponentDependencyDiagram]]
+[source,cypher,role=concept,requiresConcepts="structure:ComponentDependency",reportType="plantuml-component-diagram"]
+.Creates a diagram about components and their dependencies.
+----
+MATCH
+  (c:Component)
+OPTIONAL MATCH
+  (c)-[d:DEPENDS_ON_COMPONENT]->(:Component)
+RETURN
+  *
+----

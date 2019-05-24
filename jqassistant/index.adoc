@@ -1,6 +1,7 @@
+:toc: left
 = JUnit 4
 
-This document contains concepts and constraints which are executed by https://jqassistant.org[jQAssistant]
+This document contains rules which are executed by https://jqassistant.org[jQAssistant]
 
 [[default]]
 [role=group,includesGroups="structure,dashboard"]
