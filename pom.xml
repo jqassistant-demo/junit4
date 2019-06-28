@@ -110,9 +110,9 @@
 		<arguments />
 		<gpg.keyname>67893CC4</gpg.keyname>
 		<!-- jQAssistant -->
-		<jqassistant.maven.version>1.6.0</jqassistant.maven.version>
-		<jqassistant.kontext-e.version>1.6.1</jqassistant.kontext-e.version>
-		<jqassistant.asciidoc-report.version>1.6.0</jqassistant.asciidoc-report.version>
+		<jqassistant.maven.version>1.7.0-SNAPSHOT</jqassistant.maven.version>
+		<jqassistant.dashboard.version>1.7.0-SNAPSHOT</jqassistant.dashboard.version>
+		<jqassistant.asciidoc-report.version>1.7.0-MS3</jqassistant.asciidoc-report.version>
 	</properties>
 
 	<dependencies>
@@ -532,26 +532,15 @@
 				</executions>
 				<dependencies>
 					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.git</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.jacoco</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.pmd</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
 						<groupId>org.jqassistant.contrib.plugin</groupId>
 						<artifactId>jqassistant-asciidoc-report-plugin</artifactId>
 						<version>${jqassistant.asciidoc-report.version}</version>
 					</dependency>
-
+					<dependency>
+						<groupId>org.jqassistant.contrib.plugin</groupId>
+						<artifactId>jqassistant-dashboard-plugin</artifactId>
+						<version>${jqassistant.dashboard.version}</version>
+					</dependency>
 				</dependencies>
 			</plugin>
 		</plugins>
