@@ -110,9 +110,9 @@
 		<arguments />
 		<gpg.keyname>67893CC4</gpg.keyname>
 		<!-- jQAssistant -->
-		<jqassistant.maven.version>1.6.0</jqassistant.maven.version>
-		<jqassistant.kontext-e.version>1.6.1</jqassistant.kontext-e.version>
-		<jqassistant.asciidoc-report.version>1.6.0</jqassistant.asciidoc-report.version>
+		<jqassistant.maven.version>1.7.0</jqassistant.maven.version>
+		<jqassistant.dashboard.version>1.7.0</jqassistant.dashboard.version>
+		<jqassistant.asciidoc-report.version>1.7.0</jqassistant.asciidoc-report.version>
 	</properties>
 
 	<dependencies>
@@ -492,72 +492,61 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- jQAssistant -->
-			<plugin>
-				<groupId>com.buschmais.jqassistant</groupId>
-				<artifactId>jqassistant-maven-plugin</artifactId>
-				<version>${jqassistant.maven.version}</version>
-				<executions>
-					<execution>
-						<id>default-cli</id>
-						<goals>
-							<goal>scan</goal>
-							<goal>analyze</goal>
-						</goals>
-						<configuration>
-							<failOnSeverity>CRITICAL</failOnSeverity>
-							<warnOnSeverity>MINOR</warnOnSeverity>
-							<!--
-							<groups>
-								<group>default</group>
-							</groups>
-							-->
-							<scanIncludes>
-								<scanInclude>
-									<path>${project.basedir}/.git</path>
-								</scanInclude>
-								<!-- jacoco -->
-								<scanInclude>
-									<path>${project.build.directory}/site</path>
-								</scanInclude>
-								<!-- pmd -->
-								<scanInclude>
-									<path>${project.build.directory}/pmd.xml</path>
-								</scanInclude>
-							</scanIncludes>
-							<scanProperties>
-								<!-- jacoco -->
-								<jqassistant.plugin.jacoco.filename>jacoco.xml</jqassistant.plugin.jacoco.filename>
-								<jqassistant.plugin.jacoco.dirname>${project.build.directory}/site/jacoco-ut/</jqassistant.plugin.jacoco.dirname>
-							</scanProperties>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.git</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.jacoco</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>de.kontext-e.jqassistant.plugin</groupId>
-						<artifactId>jqassistant.plugin.pmd</artifactId>
-						<version>${jqassistant.kontext-e.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.jqassistant.contrib.plugin</groupId>
-						<artifactId>jqassistant-asciidoc-report-plugin</artifactId>
-						<version>${jqassistant.asciidoc-report.version}</version>
-					</dependency>
-
-				</dependencies>
-			</plugin>
-		</plugins>
+            <!-- jQAssistant -->
+            <plugin>
+                <groupId>com.buschmais.jqassistant</groupId>
+                <artifactId>jqassistant-maven-plugin</artifactId>
+                <version>${jqassistant.maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>scan</goal>
+                            <goal>analyze</goal>
+                        </goals>
+                        <configuration>
+                            <failOnSeverity>CRITICAL</failOnSeverity>
+                            <warnOnSeverity>MINOR</warnOnSeverity>
+                            <!--
+                            <groups>
+                                <group>default</group>
+                            </groups>
+                            -->
+                            <scanIncludes>
+                                <scanInclude>
+                                    <path>${project.basedir}/.git</path>
+                                </scanInclude>
+                                <!-- jacoco -->
+                                <scanInclude>
+                                    <path>${project.build.directory}/site</path>
+                                </scanInclude>
+                                <!-- pmd -->
+                                <scanInclude>
+                                    <path>${project.build.directory}/pmd.xml</path>
+                                </scanInclude>
+                            </scanIncludes>
+                            <scanProperties>
+                                <!-- jacoco -->
+                                <jqassistant.plugin.jacoco.filename>jacoco.xml</jqassistant.plugin.jacoco.filename>
+                                <jqassistant.plugin.jacoco.dirname>${project.build.directory}/site/jacoco-ut/</jqassistant.plugin.jacoco.dirname>
+                            </scanProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jqassistant.contrib.plugin</groupId>
+                        <artifactId>jqassistant-asciidoc-report-plugin</artifactId>
+                        <version>${jqassistant.asciidoc-report.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jqassistant.contrib.plugin</groupId>
+                        <artifactId>jqassistant-dashboard-plugin</artifactId>
+                        <version>${jqassistant.dashboard.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings
@@ -665,6 +654,17 @@
 						</reports>
 					</reportSet>
 				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.10-SNAPSHOT</version>
+			</plugin>
+			<!-- pmd -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
