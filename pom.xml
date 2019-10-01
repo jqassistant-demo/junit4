@@ -110,9 +110,9 @@
 		<arguments />
 		<gpg.keyname>67893CC4</gpg.keyname>
 		<!-- jQAssistant -->
-		<jqassistant.maven.version>1.7.0-SNAPSHOT</jqassistant.maven.version>
-		<jqassistant.dashboard.version>1.7.0-SNAPSHOT</jqassistant.dashboard.version>
-		<jqassistant.asciidoc-report.version>1.7.0-MS3</jqassistant.asciidoc-report.version>
+		<jqassistant.maven.version>1.7.0</jqassistant.maven.version>
+		<jqassistant.dashboard.version>1.7.0</jqassistant.dashboard.version>
+		<jqassistant.asciidoc-report.version>1.7.0</jqassistant.asciidoc-report.version>
 	</properties>
 
 	<dependencies>
