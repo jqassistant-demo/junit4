@@ -111,7 +111,7 @@
 		<gpg.keyname>67893CC4</gpg.keyname>
 		<!-- jQAssistant -->
 		<jqassistant.maven.version>1.7.0</jqassistant.maven.version>
-		<jqassistant.dashboard.version>1.7.0</jqassistant.dashboard.version>
+		<jqassistant.dashboard.version>1.7.1</jqassistant.dashboard.version>
 		<jqassistant.asciidoc-report.version>1.7.0</jqassistant.asciidoc-report.version>
 	</properties>
 
