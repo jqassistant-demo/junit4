@@ -4,14 +4,13 @@
 This document contains rules which are executed by https://jqassistant.org[jQAssistant]
 
 [[default]]
-[role=group,includesGroups="structure,dashboard"]
+[role=group,includesGroups="structure,jqassistant-dashboard:Default"]
 == Default Rules
 
 The following groups are executed by default:
 
 - <<structure>>
-- <<dashboard>>
 
 include::structure.adoc[]
-include::dashboard.adoc[]
+
 
